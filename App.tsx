@@ -10,7 +10,7 @@ import { THEME } from './src/theme';
 import { OneSignal } from 'react-native-onesignal';
 import { CartContextProvider } from './src/contexts/CartContext';
 
-OneSignal.initialize('05a5d7f9-2b52-4018-844c-d52eb26f89ca')
+OneSignal.initialize(process.env.EXPO_PUBLIC_ONE_SIGNAL_KEY)
 
 OneSignal.Notifications.requestPermission(true)
 
