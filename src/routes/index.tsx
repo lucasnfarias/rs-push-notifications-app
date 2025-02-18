@@ -1,10 +1,24 @@
 import { useTheme } from 'native-base';
-import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme, LinkingOptions, NavigationContainer } from '@react-navigation/native';
 
 import { AppRoutes } from './app.routes';
 import { NotificationWillDisplayEvent, OSNotification, OneSignal } from 'react-native-onesignal';
 import { useEffect, useState } from 'react';
 import { Notification } from '../components/Notification';
+
+const linking: LinkingOptions<ReactNavigation.RootParamList> = {
+  prefixes: ['igniteshoes://', 'com.rocketseat.igniteshoes://'],
+  config: {
+    screens: {
+      details: {
+        path: '/details/:productId',
+        parse: {
+          productId: (productId: string) => productId
+        }
+      },
+    }
+  }
+}
 
 export function Routes() {
   const { colors } = useTheme();
@@ -28,7 +42,7 @@ export function Routes() {
   }, [])
 
   return (
-    <NavigationContainer theme={theme}>
+    <NavigationContainer theme={theme} linking={linking}>
       <AppRoutes />
 
       {

@@ -36,6 +36,22 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 <!--END_SECTION:footer-->
 
+## Concepts
+
+### Push Notifications
+We used [OneSignal](https://onesignal.com/) to handle the push app notifications. I only tested on Android since to be able to handle iOS push notifications you need to have a paid account on Apple dev account.
+
+We did notifications with app on foreground, background and quit.
+
+We also used additionalData on push notification payload to handle custom behavior.
+
+### Deeplinks
+We setup the `scheme` on `app.json`. Used `npx uri-scheme list` to get the list of schemes set on native code.
+
+To test manually, we used this command: `npx uri-scheme open igniteshoes://details/3 --android`
+
+We also used `data.launchURL` on the push notification payload to handle deeplinking when app is opened and we use our internal Notification component to show the push notification.
+
 ## WSL Troubleshooting
 
 ### Android device via USB
